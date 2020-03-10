@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
+import React,{Component} from 'react';
+import { connect } from 'react-redux';
+import {fetchAllServices, fetchAllProviders} from './actions/appActions';
+import Services from './containers/services/serviceContainer';
+import Provider from './containers/providers/providerContainer';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+import PropTypes from 'prop-types'
+
+class App extends Component {
+
+componentDidMount(){
+  this.props.fetchAllProviders();
+  this.props.fetchAllServices();
 }
 
-export default App;
+  render(props) {
+    return (
+      <div className="App">
+      <Services></Services>
+      <Provider></Provider>
+    </div>
+  )
+  }
+}
+
+const mapDispatchToProps = {
+  fetchAllProviders,
+  fetchAllServices
+};
+
+
+export default connect(
+  null,
+  mapDispatchToProps,
+)(App);

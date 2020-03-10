@@ -1,0 +1,6 @@
+.provider>div {
+    display: inline-block;
+    width: 15rem;
+    height: 16rem;
+    margin: 2px;
+}
